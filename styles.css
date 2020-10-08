@@ -2,15 +2,64 @@ body {
 	background-color: #bae8e8;
 }
 h1 {
-	margin: 0 auto;
+	text-align: center;
 }
+
 .container {
-	display: flex;
+	display: inline-block;
 	background-color: #e3f6f5;
-	border: 1px solid black;
-	max-height: 300px;
-	max-width: 500px;
-	margin: auto;
-	margin-top: 35px;
+	border: 5px solid black;
+	margin: 35px auto;
 	border-radius: 10px;
 }
+
+div.simon-circle {
+	display: block;
+	position: relative;
+	width: 500px;
+	height: 500px;
+	border-radius: 50px;
+}
+div.quarter {
+	position: absolute;
+	width: 250px;
+	height: 250px;
+	background-color: #333;
+	transition: transform 0.5s, opacity 0.5s;
+}
+div.quarter.left-top {
+	left: 0;
+	top: 0;
+	border-top-left-radius: 250px;
+	background-color: #007944;
+	border: 3px solid black;
+}
+div.quarter.right-top {
+	left: 250px;
+	top: 0;
+	border-top-right-radius: 250px;
+	background-color: #cf1b1b;
+	border: 3px solid black;
+}
+div.quarter.left-bottom {
+	left: 0;
+	top: 250px;
+	border-bottom-left-radius: 250px;
+	background-color: #fddb3a;
+	border: 3px solid black;
+}
+div.quarter.right-bottom {
+	left: 250px;
+	top: 250px;
+	border-bottom-right-radius: 250px;
+	background-color: #150485;
+	border: 3px solid black;
+}
+div.simon-circle:hover div.quarter {
+	opacity: 0.5;
+}
+div.quarter:hover {
+	opacity: 1 !important;
+	transform: scale(1);
+}
+/* **---snippet code for simon circle from stackoverflow.com---** */
