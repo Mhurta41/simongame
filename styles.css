@@ -33,13 +33,16 @@ div.quarter.left-top {
 	border-top-left-radius: 250px;
 	background-color: #007944;
 	border: 3px solid black;
+	cursor: pointer;
 }
+
 div.quarter.right-top {
 	left: 250px;
 	top: 0;
 	border-top-right-radius: 250px;
 	background-color: #cf1b1b;
 	border: 3px solid black;
+	cursor: pointer;
 }
 div.quarter.left-bottom {
 	left: 0;
@@ -47,6 +50,7 @@ div.quarter.left-bottom {
 	border-bottom-left-radius: 250px;
 	background-color: #fddb3a;
 	border: 3px solid black;
+	cursor: pointer;
 }
 div.quarter.right-bottom {
 	left: 250px;
@@ -54,6 +58,7 @@ div.quarter.right-bottom {
 	border-bottom-right-radius: 250px;
 	background-color: #150485;
 	border: 3px solid black;
+	cursor: pointer;
 }
 div.simon-circle:hover div.quarter {
 	opacity: 0.5;
@@ -62,4 +67,36 @@ div.quarter:hover {
 	opacity: 1 !important;
 	transform: scale(1);
 }
+
+.start-btn {
+	display: inline-block;
+	padding: 15px 25px;
+	font-size: 25px;
+	background-color: #00bd56;
+	width: 200px;
+	border-radius: 10px;
+	cursor: pointer;
+	margin-top: 45px;
+	margin-bottom: 45px;
+	margin-left: 30%;
+}
+.start-btn:hover {
+	background-color: #007944;
+}
+.start-btn:active {
+	transform: translateY(4px);
+}
+div.quarter.left-top:active {
+	transform: translateY(4px);
+}
+div.quarter.right-top:active {
+	transform: translateY(4px);
+}
+div.quarter.left-bottom:active {
+	transform: translateY(4px);
+}
+div.quarter.right-bottom:active {
+	transform: translateY(4px);
+}
+
 /* **---snippet code for simon circle from stackoverflow.com---** */
