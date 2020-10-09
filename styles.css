@@ -18,10 +18,10 @@ li {
 
 .logo {
 	margin-top: 20px;
-	margin-left: 190px;
+	margin-left: 210px;
 	margin-bottom: 20px;
 	/* make media query friendly */
-	width: 40%;
+	width: 35%;
 	height: auto;
 	justify-content: center;
 	align-items: center;
@@ -36,8 +36,24 @@ li {
 	align-items: center;
 }
 .level {
-	color: white;
+	color: #01a9b4;
+	font-size: 60px;
+	display: none;
 }
+.atn-msg {
+	color: #d9e5e6;
+	font-size: 45px;
+	animation: blinker 2s linear 3;
+	animation-delay: 1s;
+	display: none;
+}
+
+@keyframes blinker {
+	50% {
+		opacity: 0;
+	}
+}
+
 .container {
 	background-image: url('https://i.imgur.com/IkkhGqw.png');
 	border: 5px solid black;
@@ -165,16 +181,16 @@ div.quarter:hover {
 	transform: translateY(7px);
 }
 div.quarter.left-top:active {
-	transform: translateY(-9px);
+	transform: translateY(-9px) translateX(-9px);
 }
 div.quarter.right-top:active {
-	transform: translateY(-9px);
+	transform: translateY(-9px) translateX(9px);
 }
 div.quarter.left-bottom:active {
-	transform: translateY(9px);
+	transform: translateY(9px) translateX(-9px);
 }
 div.quarter.right-bottom:active {
-	transform: translateY(9px);
+	transform: translateY(9px) translateX(9px);
 }
 
 /* **---snippet code for simon circle from stackoverflow.com---** */

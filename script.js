@@ -5,7 +5,8 @@ const modal = document.querySelector('#modal');
 const close = document.querySelector('#close-btn');
 const bottomButtons = document.querySelector('.bottom-buttons');
 const level = document.querySelector('.level');
-console.log(level);
+const payAtnMsg = document.querySelector('#pay-atn');
+const urTurnMsg = document.querySelector('#ur-turn');
 
 //MODAL
 const openModal = () => {
@@ -25,10 +26,18 @@ const hideButtons = () => {
 startBtn.addEventListener('click', hideButtons);
 
 //LEVEL OPERATOR
-// const hideLevel = () {
-//     level.style.display = 'block'
-// }
-// function showLevel() {
-// 	level.style.display = 'none';
+const showLevel = () => {
+	level.style.display = 'block';
+};
+startBtn.addEventListener('click', showLevel);
+
+//INFORMATION MESSAGES
+const showAtnMsg = () => {
+	payAtnMsg.style.display = 'block';
+};
+startBtn.addEventListener('click', showAtnMsg);
+
+// const showUrTurnMsg = () => {
+// 	urTurnMsg.style.display = 'block';
 // };
-// startBtn.addEventListener('click', showLevel);
+// startBtn.addEventListener('click', showUrTurnMsg);
