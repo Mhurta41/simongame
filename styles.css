@@ -4,7 +4,9 @@ body {
 h1 {
 	text-align: center;
 }
-
+li {
+	line-height: 1.8;
+}
 .container {
 	display: inline-block;
 	background-color: #e3f6f5;
@@ -68,20 +70,57 @@ div.quarter:hover {
 	transform: scale(1);
 }
 
+.how-to-btn {
+	display: inline-block;
+	padding: 15px 25px;
+	font-size: 25px;
+	background-color: #e3f6f5;
+	width: 200px;
+	border-radius: 10px;
+	border: 2px solid #01a9b4;
+	cursor: pointer;
+	margin-top: 45px;
+	margin-bottom: 20px;
+	margin-left: 30%;
+}
 .start-btn {
 	display: inline-block;
 	padding: 15px 25px;
 	font-size: 25px;
-	background-color: #00bd56;
+	background-color: #e3f6f5;
 	width: 200px;
 	border-radius: 10px;
+	border: 2px solid #4caf50;
 	cursor: pointer;
-	margin-top: 45px;
+	margin-top: 10px;
 	margin-bottom: 45px;
 	margin-left: 30%;
 }
+#close-btn {
+	background-color: #f4f6ff;
+	cursor: pointer;
+	border-radius: 10px;
+	padding: 5px 15px;
+	border: 2px solid #8d93ab;
+}
+
+#close-btn:hover {
+	background-color: #d6e0f0;
+}
+#close-btn:active {
+	transform: translateY(4px);
+}
+.how-to-btn:hover {
+	background-color: #01a9b4;
+}
+.how-to-btn:active {
+	transform: translateY(4px);
+}
 .start-btn:hover {
 	background-color: #007944;
+}
+.how-to-btn:active {
+	transform: translateY(4px);
 }
 .start-btn:active {
 	transform: translateY(4px);
@@ -100,3 +139,29 @@ div.quarter.right-bottom:active {
 }
 
 /* **---snippet code for simon circle from stackoverflow.com---** */
+
+#modal {
+	background-color: rgba(0, 0, 0, 0.4);
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 1;
+	overflow: auto;
+	display: none;
+}
+#modal-textbox {
+	background-color: #f4f6ff;
+	height: 350px;
+	width: 550px;
+	border-radius: 2px;
+	margin: 150px auto;
+	box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
+	padding: 2%;
+	line-height: 120%;
+	font-family: arial;
+}
+#modal-footer {
+	text-align: right;
+}
