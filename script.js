@@ -5,13 +5,23 @@ const modal = document.querySelector('#modal');
 const close = document.querySelector('#close-btn');
 const bottomButtons = document.querySelector('.bottom-buttons');
 const level = document.querySelector('.level');
-const payAtnMsg = document.querySelector('#pay-atn');
+const score = document.querySelector('.score');
+const simonTurnMsg = document.querySelector('#simon-turn');
 const urTurnMsg = document.querySelector('#ur-turn');
 const quarterSlices = document.querySelectorAll('.quarter');
-let levelNumber = 1;
+let levelNumber = 0;
 let isClickDisabled = true;
-const playerSequence = [];
-const simonSequence = [];
+let playerSequence = [];
+let simonSequence = [];
+let audio = [
+	new Audio('./sounds/green.mp3'),
+	new Audio('./sounds/red.mp3'),
+	new Audio('./sounds/yellow.mp3'),
+	new Audio('./sounds/blue.mp3'),
+	new Audio('./sounds/wrong.mp3'),
+];
+
+// ***----audio snippet from stackoverflow.com---**
 
 //MODAL
 const openModal = () => {
@@ -27,19 +37,34 @@ const hideButtons = () => {
 	bottomButtons.style.display = 'none';
 };
 
-//LEVEL OPERATOR
+//LEVEL NUMBER
 const showLevel = () => {
 	level.style.display = 'block';
 };
 
-//INFORMATION MESSAGES
-const showAtnMsg = () => {
-	payAtnMsg.style.display = 'block';
+//SCORE INCREMENTOR
+const scoreIncrementor = () => {
+	let newScore = (levelNumber - 1) * 1000;
+	score.innerText = `Score: ${newScore}`;
 };
 
-// const showUrTurnMsg = () => {
-// 	urTurnMsg.style.display = 'block';
-// };
+//SHOW INFORMATION MESSAGES
+const showSimonTurnMsg = () => {
+	simonTurnMsg.style.display = 'block';
+};
+
+const showUrTurnMsg = () => {
+	urTurnMsg.style.display = 'block';
+};
+
+//HIDE INFORMATION MESSAGES
+const hideSimonTurnMsg = () => {
+	simonTurnMsg.style.display = 'none';
+};
+
+const hideUrTurnMsg = () => {
+	urTurnMsg.style.display = 'none';
+};
 
 //SIMON RANDOM SEQUENCE GENERATOR
 function randomSimonSequence() {
@@ -54,6 +79,14 @@ function preventUserInput() {
 function enableUserInput() {
 	isClickDisabled = false;
 }
+
+//PAUSE BETWEEN SIMON AND USER
+function pause(ms) {
+	return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// ***----async and pause code from sitepoint.com----****
+
 //SHOW SIMON'S SEQUENCE
 function showSimonSequence() {
 	let slice = null;
@@ -62,17 +95,21 @@ function showSimonSequence() {
 	switch (lastSimonInput) {
 		case 0:
 			slice = document.querySelector('#green');
+			audio[0].play();
 			transformBy = 'translateY(-9px) translateX(-9px)';
 			break;
 		case 1:
+			audio[1].play();
 			slice = document.querySelector('#red');
 			transformBy = 'translateY(-9px) translateX(9px)';
 			break;
 		case 2:
+			audio[2].play();
 			slice = document.querySelector('#yellow');
 			transformBy = 'translateY(9px) translateX(-9px)';
 			break;
 		case 3:
+			audio[3].play();
 			slice = document.querySelector('#blue');
 			transformBy = 'translateY(9px) translateX(9px)';
 			break;
@@ -84,40 +121,55 @@ function showSimonSequence() {
 }
 
 //RESTART LEVEL
-const restartLevel = () => {
+const restartLevel = async () => {
+	levelNumber++;
+	level.innerText = `Level: ${levelNumber}`;
+	playerSequence = [];
+	scoreIncrementor();
+	showSimonTurnMsg();
+	await pause(2000);
+	hideSimonTurnMsg();
 	randomSimonSequence();
 	preventUserInput();
+	await pause(1000);
 	showSimonSequence();
+	await pause(1000);
+	showUrTurnMsg();
+	await pause(2000);
 	enableUserInput();
+	await pause(1000);
+	hideUrTurnMsg();
+};
+
+//RESET GAME
+const resetGame = async () => {
+	levelNumber = 0;
+	simonSequence = [];
+	newScore = 0;
+	simonTurnMsg.innerText = `SIMON'S TURN`;
+	restartLevel();
 };
 
 //START GAME
 const startGame = () => {
 	hideButtons();
 	showLevel();
-	showAtnMsg();
-	//YOUR TURN MSG
-	for (let i = 0; i < simonSequence.length; i++) {
-		restartLevel();
-	}
-};
-
-//NEW LEVEL FUNCTION
-const newLevel = () => {
-	levelNumber++;
-	level.innerText = `Level: ${levelNumber}`;
+	restartLevel();
 };
 
 //GAME OVER FUNCTION
 const gameOver = () => {
-	level.innerText = 'Game Over!!!!';
+	level.innerText = 'GAME OVER!!!!';
+	audio[4].play();
+	simonTurnMsg.innerText = 'PRESS ENTER TO RESTART';
+	showSimonTurnMsg();
 };
 
 //CHECKING CORRECT SEQUENCES
 function checkSequence(indexOfArray) {
 	if (playerSequence[indexOfArray] === simonSequence[indexOfArray]) {
 		if (simonSequence.length === playerSequence.length) {
-			newLevel();
+			restartLevel();
 		}
 	} else {
 		gameOver();
@@ -128,21 +180,39 @@ const chosenSlice = (event) => {
 	if (isClickDisabled) {
 		return;
 	}
+	let slice = null;
+	let transformBy = null;
 	const userClicked = event.target.id;
 	switch (userClicked) {
 		case 'green':
 			playerSequence.push(0);
+			slice = document.querySelector('#green');
+			audio[0].play();
+			transformBy = 'translateY(-9px) translateX(-9px)';
 			break;
 		case 'red':
 			playerSequence.push(1);
+			slice = document.querySelector('#red');
+			audio[1].play();
+			transformBy = 'translateY(-9px) translateX(9px)';
 			break;
 		case 'yellow':
 			playerSequence.push(2);
+			slice = document.querySelector('#yellow');
+			audio[2].play();
+			transformBy = 'translateY(9px) translateX(-9px)';
 			break;
 		case 'blue':
 			playerSequence.push(3);
+			slice = document.querySelector('#blue');
+			audio[3].play();
+			transformBy = 'translateY(9px) translateX(9px)';
 			break;
 	}
+	slice.style.transform = transformBy;
+	setTimeout(() => {
+		slice.style.transform = 'translate(0, 0)';
+	}, 500);
 	checkSequence(playerSequence.length - 1);
 };
 
@@ -152,4 +222,10 @@ close.addEventListener('click', closeModal);
 startBtn.addEventListener('click', startGame);
 quarterSlices.forEach((slice) => {
 	slice.addEventListener('click', chosenSlice);
+});
+//RESTART AFTER GAME OVER
+document.addEventListener('keypress', function (e) {
+	if (e.key === 'Enter') {
+		resetGame();
+	}
 });

@@ -40,11 +40,17 @@ li {
 	font-size: 60px;
 	display: none;
 }
+
+.score {
+	color: white;
+	font-size: 40px;
+}
+
 .atn-msg {
 	color: #d9e5e6;
 	font-size: 45px;
-	animation: blinker 2s linear 3;
-	animation-delay: 1s;
+	animation: blinker 1s linear 3;
+	animation-delay: 0.5s;
 	display: none;
 }
 
