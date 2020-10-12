@@ -13,7 +13,7 @@ let levelNumber = 0;
 let isClickDisabled = true;
 let playerSequence = [];
 let simonSequence = [];
-let audio = [
+let soundEffects = [
 	new Audio('./sounds/green.mp3'),
 	new Audio('./sounds/red.mp3'),
 	new Audio('./sounds/yellow.mp3'),
@@ -95,21 +95,21 @@ function showSimonSequence() {
 	switch (lastSimonInput) {
 		case 0:
 			slice = document.querySelector('#green');
-			audio[0].play();
+			soundEffects[0].play();
 			transformBy = 'translateY(-9px) translateX(-9px)';
 			break;
 		case 1:
-			audio[1].play();
+			soundEffects[1].play();
 			slice = document.querySelector('#red');
 			transformBy = 'translateY(-9px) translateX(9px)';
 			break;
 		case 2:
-			audio[2].play();
+			soundEffects[2].play();
 			slice = document.querySelector('#yellow');
 			transformBy = 'translateY(9px) translateX(-9px)';
 			break;
 		case 3:
-			audio[3].play();
+			soundEffects[3].play();
 			slice = document.querySelector('#blue');
 			transformBy = 'translateY(9px) translateX(9px)';
 			break;
@@ -152,6 +152,9 @@ const resetGame = async () => {
 
 //START GAME
 const startGame = () => {
+	const audio = document.querySelector('audio');
+	audio.volume = 0.2;
+	audio.play();
 	hideButtons();
 	showLevel();
 	restartLevel();
@@ -160,7 +163,7 @@ const startGame = () => {
 //GAME OVER FUNCTION
 const gameOver = () => {
 	level.innerText = 'GAME OVER!!!!';
-	audio[4].play();
+	soundEffects[4].play();
 	simonTurnMsg.innerText = 'PRESS ENTER TO RESTART';
 	showSimonTurnMsg();
 };
@@ -187,25 +190,25 @@ const chosenSlice = (event) => {
 		case 'green':
 			playerSequence.push(0);
 			slice = document.querySelector('#green');
-			audio[0].play();
+			soundEffects[0].play();
 			transformBy = 'translateY(-9px) translateX(-9px)';
 			break;
 		case 'red':
 			playerSequence.push(1);
 			slice = document.querySelector('#red');
-			audio[1].play();
+			soundEffects[1].play();
 			transformBy = 'translateY(-9px) translateX(9px)';
 			break;
 		case 'yellow':
 			playerSequence.push(2);
 			slice = document.querySelector('#yellow');
-			audio[2].play();
+			soundEffects[2].play();
 			transformBy = 'translateY(9px) translateX(-9px)';
 			break;
 		case 'blue':
 			playerSequence.push(3);
 			slice = document.querySelector('#blue');
-			audio[3].play();
+			soundEffects[3].play();
 			transformBy = 'translateY(9px) translateX(9px)';
 			break;
 	}
@@ -217,6 +220,7 @@ const chosenSlice = (event) => {
 };
 
 //EVENT LISTENERS
+
 howToPlayBtn.addEventListener('click', openModal);
 close.addEventListener('click', closeModal);
 startBtn.addEventListener('click', startGame);
