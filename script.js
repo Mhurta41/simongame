@@ -38,8 +38,7 @@ function closeModal() {
 
 //HITTING START BUTTON HIDES BOTTOM BUTTONS
 const hideButtons = () => {
-	bottomButtons.style.visibility = 'hidden';
-	bottomButtons.style.opacity = 0;
+	bottomButtons.style.display = 'none'
 };
 
 //SHOW LEVEL NUMBER
