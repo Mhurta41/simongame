@@ -17,29 +17,43 @@ li {
 .logo {
 	width: 30%;
 	height: auto;
+	margin-bottom: 2.5rem;
+	display: block;
 }
 
 .title {
-	width: 80%;
+	width: 60%;
 	height: auto;
 }
+
 .level {
 	color: #01a9b4;
-	font-size: 60px;
-	display: none;
+	font-size: 3.75rem;
+	margin-top: 5%;
+	margin-bottom: 0.625rem;
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s, opacity 0.5s linear;
 }
 
 .score {
 	color: white;
-	font-size: 40px;
+	font-size: 1.875rem;
+	margin-top: 0rem;
+	margin-bottom: 3.125rem;
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s, opacity 0.5s linear;
 }
 
 .atn-msg {
 	color: #d9e5e6;
-	font-size: 45px;
+	font-size: 2.8125rem;
 	animation: blinker 1s linear 3;
-	animation-delay: 0.5s;
+	animation-delay: 1s;
 	display: none;
+	margin-top: 0rem;
+	margin-bottom: 0rem;
 }
 
 @keyframes blinker {
@@ -52,60 +66,62 @@ li {
 	display: flex;
 	flex-direction: column;
 	background-image: url('https://i.imgur.com/IkkhGqw.png');
-	border: 5px solid black;
-	margin: 50px auto 50px auto;
-	border-radius: 10px;
+	border: 0.625rem solid black;
+	margin: 10% 10%;
+	border-radius: 0.625rem;
 	justify-content: center;
 	align-items: center;
-	padding-top: 60px;
-	padding-bottom: 60px;
+	padding-top: 1.875rem;
+	padding-bottom: 1.875rem;
 }
 
 div.simon-circle {
 	display: block;
 	position: relative;
-	width: 500px;
-	height: 500px;
-	border-radius: 50px;
+	margin-top: 2.5rem;
+	width: 25rem;
+	/* 400px */
+	height: 25rem;
+	border-radius: 3.125rem;
 }
 div.quarter {
 	position: absolute;
-	width: 250px;
-	height: 250px;
+	width: 12.5rem;
+	height: 12.5rem;
 	background-color: #333;
 	transition: transform 0.5s, opacity 0.5s;
 }
 div.quarter.left-top {
 	left: 0;
 	top: 0;
-	border-top-left-radius: 250px;
+	border-top-left-radius: 12.5rem;
 	background-color: #0b8457;
-	border: 3px solid black;
+	border: 0.5rem solid black;
 	cursor: pointer;
 }
 
 div.quarter.right-top {
-	left: 250px;
-	top: 0;
-	border-top-right-radius: 250px;
+	left: 12.5rem;
+	top: 0rem;
+	border-top-right-radius: 12.5rem;
 	background-color: #cf1b1b;
-	border: 3px solid black;
+	border: 0.5rem solid black;
 	cursor: pointer;
 }
 div.quarter.left-bottom {
-	left: 0;
-	top: 250px;
-	border-bottom-left-radius: 250px;
+	left: 0rem;
+	top: 12.5rem;
+	border-bottom-left-radius: 12.5rem;
 	background-color: #fddb3a;
-	border: 3px solid black;
+	border: 0.5rem solid black;
 	cursor: pointer;
 }
 div.quarter.right-bottom {
-	left: 250px;
-	top: 250px;
-	border-bottom-right-radius: 250px;
+	left: 12.5rem;
+	top: 12.5rem;
+	border-bottom-right-radius: 12.5rem;
 	background-color: #150485;
-	border: 3px solid black;
+	border: 0.5rem solid black;
 	cursor: pointer;
 }
 div.simon-circle:hover div.quarter {
@@ -113,41 +129,42 @@ div.simon-circle:hover div.quarter {
 }
 div.quarter:hover {
 	opacity: 1 !important;
-	transform: scale(1);
 }
 
 .how-to-btn {
 	display: block;
-	padding: 15px 25px;
-	font-size: 25px;
+	padding: 0.9375rem 1.5625rem;
+	font-size: 1.875rem;
 	background-color: #e3f6f5;
-	width: 200px;
-	border-radius: 10px;
-	border: 2px solid #01a9b4;
+	width: 12.5rem;
+	border-radius: 0.625rem;
+	border: 0.375rem solid #01a9b4;
 	cursor: pointer;
-	margin-top: 45px;
-	margin-bottom: 20px;
+	margin-top: 2.8125rem;
+	margin-bottom: 1.25rem;
 	font-family: 'Teko', sans-serif;
 }
+
 .start-btn {
 	display: block;
-	padding: 15px 25px;
-	font-size: 25px;
+	padding: 0.9375rem 1.5625rem;
+	font-size: 1.875rem;
 	background-color: #e3f6f5;
-	width: 200px;
-	border-radius: 10px;
-	border: 2px solid #4caf50;
+	width: 12.5rem;
+	border-radius: 0.625rem;
+	border: 0.375rem solid #4caf50;
 	cursor: pointer;
-	margin-top: 10px;
-	margin-bottom: 45px;
+	margin-top: 0.625rem;
+	margin-bottom: 1.875rem;
 	font-family: 'Teko', sans-serif;
 }
+
 #close-btn {
 	background-color: #f4f6ff;
 	cursor: pointer;
-	border-radius: 10px;
-	padding: 5px 15px;
-	border: 2px solid #8d93ab;
+	border-radius: 0.625rem;
+	padding: 0.3125rem 0.9375rem;
+	border: 0.3125rem solid #4d4d4d;
 	font-family: 'Teko', sans-serif;
 }
 
@@ -155,34 +172,34 @@ div.quarter:hover {
 	background-color: #009a9a;
 }
 #close-btn:active {
-	transform: translateY(4px);
+	transform: translateY(0.25rem);
 }
 .how-to-btn:hover {
 	background-color: #009a9a;
 }
 .how-to-btn:active {
-	transform: translateY(4px);
+	transform: translateY(0.25rem);
 }
 .start-btn:hover {
 	background-color: #0b8457;
 }
 .how-to-btn:active {
-	transform: translateY(7px);
+	transform: translateY(0.4375rem);
 }
 .start-btn:active {
-	transform: translateY(7px);
+	transform: translateY(0.4375rem);
 }
 div.quarter.left-top:active {
-	transform: translateY(-9px) translateX(-9px);
+	transform: translateY(-0.5625rem) translateX(-0.5625rem);
 }
 div.quarter.right-top:active {
-	transform: translateY(-9px) translateX(9px);
+	transform: translateY(-0.5625rem) translateX(0.5625rem);
 }
 div.quarter.left-bottom:active {
-	transform: translateY(9px) translateX(-9px);
+	transform: translateY(0.5625rem) translateX(-0.5625rem);
 }
 div.quarter.right-bottom:active {
-	transform: translateY(9px) translateX(9px);
+	transform: translateY(0.5625rem) translateX(0.5625rem);
 }
 
 /* **---snippet code for simon circle from stackoverflow.com---** */
@@ -190,8 +207,8 @@ div.quarter.right-bottom:active {
 #modal {
 	background-color: rgba(0, 0, 0, 0.4);
 	position: fixed;
-	top: 0;
-	left: 0;
+	top: 0rem;
+	left: 0rem;
 	height: 100%;
 	width: 100%;
 	z-index: 1;
@@ -200,17 +217,21 @@ div.quarter.right-bottom:active {
 }
 #modal-textbox {
 	background-color: #f4f6ff;
-	height: 350px;
-	width: 550px;
-	border-radius: 2px;
-	margin: 150px auto;
-	box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
+	height: 21.875rem;
+	width: 34.375rem;
+	border-radius: 0.125rem;
+	margin: 9.375rem auto;
+	box-shadow: 0.625rem 0.625rem 1.25rem rgba(0, 0, 0, 0.4);
 	padding: 3%;
 	line-height: 120%;
 	font-family: 'Teko', sans-serif;
-	font-size: 17px;
-	border-radius: 10px;
+	font-size: 1.0625rem;
+	border-radius: 0.625rem;
+	border: 0.375rem solid black;
 }
 #modal-footer {
 	text-align: right;
+}
+/* *****------MEDIA QUERY FRIENDLY PARAMETERS----***** */
+@media only screen and (min-device-width: 30rem) {
 }

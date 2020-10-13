@@ -9,6 +9,9 @@ const score = document.querySelector('.score');
 const simonTurnMsg = document.querySelector('#simon-turn');
 const urTurnMsg = document.querySelector('#ur-turn');
 const quarterSlices = document.querySelectorAll('.quarter');
+const audio = document.querySelector('audio');
+const logo = document.querySelector('.logo');
+const body = document.querySelector('body');
 let levelNumber = 0;
 let isClickDisabled = true;
 let playerSequence = [];
@@ -22,6 +25,7 @@ let soundEffects = [
 ];
 
 // ***----audio snippet from stackoverflow.com---**
+// ***----background music from soundcloud---***
 
 //MODAL
 const openModal = () => {
@@ -34,12 +38,20 @@ function closeModal() {
 
 //HITTING START BUTTON HIDES BOTTOM BUTTONS
 const hideButtons = () => {
-	bottomButtons.style.display = 'none';
+	bottomButtons.style.visibility = 'hidden';
+	bottomButtons.style.opacity = 0;
 };
 
-//LEVEL NUMBER
+//SHOW LEVEL NUMBER
 const showLevel = () => {
-	level.style.display = 'block';
+	level.style.visibility = 'visible';
+	level.style.opacity = 1;
+};
+
+//SHOW SCORE NUMBER
+const showScore = () => {
+	score.style.visibility = 'visible';
+	score.style.opacity = 1;
 };
 
 //SCORE INCREMENTOR
@@ -64,6 +76,11 @@ const hideSimonTurnMsg = () => {
 
 const hideUrTurnMsg = () => {
 	urTurnMsg.style.display = 'none';
+};
+
+//HIDE LOGO WHEN GAME STARTS
+const hideLogo = () => {
+	logo.style.display = 'none';
 };
 
 //SIMON RANDOM SEQUENCE GENERATOR
@@ -122,12 +139,17 @@ function showSimonSequence() {
 
 //RESTART LEVEL
 const restartLevel = async () => {
+	body.style.backgroundColor = '#bae8e8';
+	level.style.color = '#01a9b4';
+	audio.loop = true;
+	audio.volume = 0.2;
+	audio.play();
 	levelNumber++;
 	level.innerText = `Level: ${levelNumber}`;
 	playerSequence = [];
 	scoreIncrementor();
 	showSimonTurnMsg();
-	await pause(2000);
+	await pause(3000);
 	hideSimonTurnMsg();
 	randomSimonSequence();
 	preventUserInput();
@@ -152,11 +174,13 @@ const resetGame = async () => {
 
 //START GAME
 const startGame = () => {
-	const audio = document.querySelector('audio');
+	audio.loop = true;
 	audio.volume = 0.2;
 	audio.play();
 	hideButtons();
+	hideLogo();
 	showLevel();
+	showScore();
 	restartLevel();
 };
 
@@ -164,6 +188,7 @@ const startGame = () => {
 const gameOver = () => {
 	level.innerText = 'GAME OVER!!!!';
 	soundEffects[4].play();
+	audio.pause();
 	simonTurnMsg.innerText = 'PRESS ENTER TO RESTART';
 	showSimonTurnMsg();
 };
@@ -176,6 +201,13 @@ function checkSequence(indexOfArray) {
 		}
 	} else {
 		gameOver();
+		body.style.backgroundColor = '#cf1b1b';
+		level.style.color = '#cf1b1b';
+		document.addEventListener('keypress', function (e) {
+			if (e.key === 'Enter') {
+				resetGame();
+			}
+		});
 	}
 }
 
@@ -220,16 +252,9 @@ const chosenSlice = (event) => {
 };
 
 //EVENT LISTENERS
-
 howToPlayBtn.addEventListener('click', openModal);
 close.addEventListener('click', closeModal);
 startBtn.addEventListener('click', startGame);
 quarterSlices.forEach((slice) => {
 	slice.addEventListener('click', chosenSlice);
-});
-//RESTART AFTER GAME OVER
-document.addEventListener('keypress', function (e) {
-	if (e.key === 'Enter') {
-		resetGame();
-	}
 });
