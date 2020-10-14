@@ -1,6 +1,7 @@
 body {
 	background-color: #bae8e8;
 	font-family: 'Teko', sans-serif;
+	max-height: 98vh;
 }
 h1 {
 	text-align: center;
@@ -80,7 +81,6 @@ div.simon-circle {
 	position: relative;
 	margin-top: 2.5rem;
 	width: 25rem;
-	/* 400px */
 	height: 25rem;
 	border-radius: 3.125rem;
 }
@@ -92,8 +92,8 @@ div.quarter {
 	transition: transform 0.5s, opacity 0.5s;
 }
 div.quarter.left-top {
-	left: 0;
-	top: 0;
+	left: 0rem;
+	top: 0rem;
 	border-top-left-radius: 12.5rem;
 	background-color: #0b8457;
 	border: 0.5rem solid black;
@@ -129,6 +129,14 @@ div.simon-circle:hover div.quarter {
 }
 div.quarter:hover {
 	opacity: 1 !important;
+}
+
+.volume-btn {
+	display: none;
+	height: 2.5rem;
+	width: 10rem;
+	cursor: pointer;
+	margin-top: 2rem;
 }
 
 .how-to-btn {

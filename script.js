@@ -12,6 +12,7 @@ const quarterSlices = document.querySelectorAll('.quarter');
 const audio = document.querySelector('audio');
 const logo = document.querySelector('.logo');
 const body = document.querySelector('body');
+const volumeBtn = document.querySelector('.volume-btn');
 let levelNumber = 0;
 let isClickDisabled = true;
 let playerSequence = [];
@@ -38,7 +39,7 @@ function closeModal() {
 
 //HITTING START BUTTON HIDES BOTTOM BUTTONS
 const hideButtons = () => {
-	bottomButtons.style.display = 'none'
+	bottomButtons.style.display = 'none';
 };
 
 //SHOW LEVEL NUMBER
@@ -57,6 +58,16 @@ const showScore = () => {
 const scoreIncrementor = () => {
 	let newScore = (levelNumber - 1) * 1000;
 	score.innerText = `Score: ${newScore}`;
+};
+
+//SHOW VOLUME OFF BUTTON
+const showVolumeBtn = () => {
+	volumeBtn.style.display = 'block';
+};
+
+//MAKE TURN OFF VOLUME BUTTON WORK
+const volumeOff = () => {
+	audio.pause();
 };
 
 //SHOW INFORMATION MESSAGES
@@ -141,7 +152,7 @@ const restartLevel = async () => {
 	body.style.backgroundColor = '#bae8e8';
 	level.style.color = '#01a9b4';
 	audio.loop = true;
-	audio.volume = 0.2;
+	audio.volume = 0.02;
 	audio.play();
 	levelNumber++;
 	level.innerText = `Level: ${levelNumber}`;
@@ -174,12 +185,14 @@ const resetGame = async () => {
 //START GAME
 const startGame = () => {
 	audio.loop = true;
-	audio.volume = 0.2;
+	audio.volume = 0.02;
 	audio.play();
 	hideButtons();
 	hideLogo();
 	showLevel();
 	showScore();
+	showVolumeBtn();
+	volumeOff();
 	restartLevel();
 };
 
@@ -257,3 +270,5 @@ startBtn.addEventListener('click', startGame);
 quarterSlices.forEach((slice) => {
 	slice.addEventListener('click', chosenSlice);
 });
+volumeBtn.addEventListener('click', volumeOff);
+volumeBtn.addEventListener('click', audio.play());
