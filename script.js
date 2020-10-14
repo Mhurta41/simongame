@@ -271,4 +271,3 @@ quarterSlices.forEach((slice) => {
 	slice.addEventListener('click', chosenSlice);
 });
 volumeBtn.addEventListener('click', volumeOff);
-volumeBtn.addEventListener('click', audio.play());
