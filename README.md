@@ -43,3 +43,10 @@ Stretch Goals:
 <img width="914" alt="Simon desktop game play" src="https://media.git.generalassemb.ly/user/31368/files/4d74d480-08e4-11eb-90a0-b473d46d8731">
 
 ## Major hurdles
+
+-Trouble with making the page responsive
+-Troubles with toggling audio on and off
+-Could not get the volume off button to turn the sound back on
+-Trouble with page layout due to CSS issues
+-Could not get the landing page layout without a big space in the middle (hidden level and score)
+-Timing in the game was difficult like how long the user should have to respond and time between rounds

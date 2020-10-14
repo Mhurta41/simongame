@@ -139,6 +139,13 @@ div.quarter:hover {
 	margin-top: 2rem;
 }
 
+.volume-btn:hover {
+	background-color: #009a9a;
+}
+.volume-btn:active {
+	transform: translateY(0.25rem);
+}
+
 .how-to-btn {
 	display: block;
 	padding: 0.9375rem 1.5625rem;
@@ -239,7 +246,4 @@ div.quarter.right-bottom:active {
 }
 #modal-footer {
 	text-align: right;
-}
-/* *****------MEDIA QUERY FRIENDLY PARAMETERS----***** */
-@media only screen and (min-device-width: 30rem) {
 }
